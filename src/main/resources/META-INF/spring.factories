@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.xauat.stric.config.SwiftPassPayConfig,\
+cn.xauat.stric.config.XmlConfig,\
+cn.xauat.stric.service.SwiftPassWxPayService,\
+cn.xauat.stric.service.SwiftPassAliPayService,\
+cn.xauat.stric.service.SwiftPassUnifiedService
