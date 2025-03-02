@@ -98,7 +98,6 @@ public abstract class BasePayRequest implements Serializable {
      * </pre>
      */
     @XStreamAlias("nonce_str")
-    @Required
     protected String nonceStr;
     /**
      * <pre>
