@@ -28,9 +28,9 @@
 引入如下依赖
 ```xml
 <dependency>
-    <groupId>cn.xauat.static</groupId>
+    <groupId>io.github.fakeruzi</groupId>
     <artifactId>swiftpass-pay</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 </dependency>
 ```
 
