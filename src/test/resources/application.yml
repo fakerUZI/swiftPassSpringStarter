@@ -1,0 +1,15 @@
+swift-pass:
+  # 私钥
+  rsa-pri-key: 私钥
+  # 公钥
+  rsa-pub-key: 公钥
+  # 商户id
+  mch-id: 商户id
+  # 下单的url
+  pay-base-url: https://payapi.swiftpass.cn/pay/gateway
+  # 加密方式
+  sign-type: RSA_1_256
+  # 对账单下载url
+  statement-bank-url: https://download.swiftpass.cn/gateway
+  # 微信小程序id
+  wx-app-id: wx123456789

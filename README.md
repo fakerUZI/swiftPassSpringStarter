@@ -17,13 +17,72 @@
 - 可扩展的支付渠道支持
 - 详细的代码注释与异常处理
 
-## 🚀 快速开始
-~~还没提交中央仓库~~
 
 | 技术栈       | 版本                  |
 |-------------|----------------------|
 | Spring Boot | 2.7                  |
 | Java        | 8+                   |
+
+## 🚀 快速开始
+
+引入如下依赖
+```xml
+<dependency>
+    <groupId>cn.xauat.static</groupId>
+    <artifactId>swiftpass-pay</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+```
+
+配置文件增加如下配置
+```
+swift-pass:
+  # 私钥
+  rsa-pri-key: 私钥
+  # 公钥
+  rsa-pub-key: 公钥
+  # 商户id
+  mch-id: 商户id
+  # 下单的url
+  pay-base-url: https://gspay.gsbankchina.com/pay-main/pay/gateway
+  # 加密方式
+  sign-type: RSA_1_256
+  # 对账单下载url
+  statement-bank-url: https://gspay.gsbankchina.com/payapi/gateway
+  # 微信小程序id
+  wx-app-id: wxaf73db954ce6cf7f
+```
+
+使用了SPI机制自动加载几个要用到的类，则使用示例如下：
+详情也可查看[TestDemo](https://github.com/fakerUZI/swiftPassSpringStarter/tree/master/src/test/java/cn/xauat/TestDemo)
+```java
+@SpringBootTest(classes = TestApplication.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+public class TestDemo {
+
+    @Autowired
+    private SwiftPassWxPayService swiftPassWxPayService;
+
+    @Test
+    public void conflictTime() {
+        WxInitializationPayRequest wxInitializationPayRequest = new WxInitializationPayRequest();
+        wxInitializationPayRequest.setIsMinipg("1");
+        wxInitializationPayRequest.setOutTradeNo("12345678901112233");
+        wxInitializationPayRequest.setBody("测试");
+        wxInitializationPayRequest.setSubAppid("wxaf73db954ce6cf7f");
+        wxInitializationPayRequest.setSubOpenid("oAEHG6xZ0CDo_8PShF8mNwRcszvk");
+        wxInitializationPayRequest.setTotalFee(100);
+
+        wxInitializationPayRequest.setMchCreateIp("127.0.0.1");
+        wxInitializationPayRequest.setNotifyUrl("127.0.0.1");
+        wxInitializationPayRequest.setNonceStr("12345678901112233");
+        wxInitializationPayRequest.setMchId("204540051457");
+        WxMpPaymentResponse wxMpPaymentResponse = swiftPassWxPayService.initializationRequest(wxInitializationPayRequest);
+        System.out.println(wxMpPaymentResponse);
+    }
+}
+
+```
 
 ## 🙏 致谢
 感谢 [zact](https://github.com/zacat/swiftpass-sdk) 提供的设计思路参考
