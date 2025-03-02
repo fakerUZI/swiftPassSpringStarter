@@ -38,7 +38,6 @@ public class RSAUtils {
             PrivateKey privateKey = getKeyFactory().generatePrivate(keySpec);
             signature.initSign(privateKey);
         } catch (Exception e) {
-            //logger.warn("解析私钥失败：{}", e.getMessage());
             throw new RuntimeException("INVALID_PRIKEY");
         }
         try {
@@ -46,7 +45,6 @@ public class RSAUtils {
             return signature.sign();
         } catch (SignatureException e) {
             // 一般不会出现
-
             throw new RuntimeException(e.getMessage());
         }
     }

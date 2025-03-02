@@ -39,7 +39,8 @@ public class HttpUtils {
         } catch (Exception e) {
             log.error("\n【请求地址】：{}\n【请求数据】：{}\n【异常信息】：{}",
                     url, requestStr, e.getMessage());
-            throw new RuntimeException(e); // 抛出自定义异常或客户异常
+            // 抛出自定义异常或客户异常
+            throw new RuntimeException(e);
         }
     }
 

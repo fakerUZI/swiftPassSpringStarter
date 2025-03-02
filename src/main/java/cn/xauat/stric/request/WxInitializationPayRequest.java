@@ -4,11 +4,14 @@ import cn.hutool.extra.spring.SpringUtil;
 import cn.xauat.stric.annotation.Required;
 import cn.xauat.stric.base.BasePayRequest;
 import cn.xauat.stric.config.SwiftPassPayConfig;
+import cn.xauat.stric.constant.PayConstants;
 import cn.xauat.stric.exception.PayException;
+import cn.xauat.stric.utils.SignUtils;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 
@@ -353,11 +356,6 @@ public class WxInitializationPayRequest extends BasePayRequest {
     @XStreamAlias("groupno")
     private String groupno;
 
-    public WxInitializationPayRequest() {
-        this.service = "pay.weixin.jspay";
-        SwiftPassPayConfig bean = SpringUtil.getBean(SwiftPassPayConfig.class);
-        this.mchId = bean.getMchId();
-    }
 
     @Override
     protected void checkConstraints() throws PayException {
@@ -367,5 +365,12 @@ public class WxInitializationPayRequest extends BasePayRequest {
     @Override
     protected void storeMap(Map<String, String> map) {
 
+    }
+
+    public void checkAndSign() throws PayException {
+        this.service = "pay.weixin.jspay";
+        SwiftPassPayConfig bean = SpringUtil.getBean(SwiftPassPayConfig.class);
+        this.mchId = bean.getMchId();
+        super.checkAndSign();
     }
 }

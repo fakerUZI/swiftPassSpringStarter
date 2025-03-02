@@ -7,6 +7,7 @@ import cn.xauat.stric.exception.PayException;
 import cn.xauat.stric.utils.SignUtils;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Document;
@@ -18,6 +19,7 @@ import java.util.Map;
  * @create 2025/3/1-17:48
  * @description 支付宝支付请求结果返回类
  **/
+@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @Slf4j
 @Data

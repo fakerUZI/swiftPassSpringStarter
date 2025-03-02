@@ -2,6 +2,7 @@ package cn.xauat.stric.base;
 
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
+import cn.xauat.stric.annotation.Required;
 import cn.xauat.stric.config.SwiftPassPayConfig;
 import cn.xauat.stric.config.XmlConfig;
 import cn.xauat.stric.constant.PayConstants;
@@ -46,6 +47,7 @@ public abstract class BasePayRequest implements Serializable {
      * </pre>
      */
     @XStreamAlias("service")
+    @Required
     protected String service;
 
     /**
@@ -96,6 +98,7 @@ public abstract class BasePayRequest implements Serializable {
      * </pre>
      */
     @XStreamAlias("nonce_str")
+    @Required
     protected String nonceStr;
     /**
      * <pre>
@@ -253,10 +256,8 @@ public abstract class BasePayRequest implements Serializable {
      * @throws PayException the wx pay exception
      */
     public void checkAndSign() throws PayException {
-        SwiftPassPayConfig config = SpringUtil.getBean(SwiftPassPayConfig.class);
         this.checkFields();
-
-
+        SwiftPassPayConfig config = SpringUtil.getBean(SwiftPassPayConfig.class);
         if (StringUtils.isBlank(getMchId())) {
             this.setMchId(config.getMchId());
         }
