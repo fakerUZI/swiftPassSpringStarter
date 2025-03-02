@@ -54,7 +54,7 @@ swift-pass:
 ```
 
 使用了SPI机制自动加载几个要用到的类，则使用示例如下：
-详情也可查看[TestDemo](https://github.com/fakerUZI/swiftPassSpringStarter/tree/master/src/test/java/cn/xauat/TestDemo)
+详情也可查看[TestDemo](https://github.com/fakerUZI/swiftPassSpringStarter/blob/master/src/test/java/cn/xauat/stric/TestDemo.java)
 ```java
 @SpringBootTest(classes = TestApplication.class)
 @RunWith(SpringJUnit4ClassRunner.class)
